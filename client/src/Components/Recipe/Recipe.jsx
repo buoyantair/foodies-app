@@ -21,7 +21,16 @@ class Recipe extends Component {
         this.setState({isEditing: !this.state.isEditing})
     }
 
+    addEmptyStep() {
+        let EmptyStep = {
+            desc: '',
+            img: ''
+        }
 
+        let {steps} = this.state.recipe;
+        steps.push(EmptyStep);
+        this.setState({steps});
+    }
 
     handleRemoveEntry(prop, index){
         let {recipe} = this.state;
@@ -69,6 +78,7 @@ class Recipe extends Component {
                 <Steps 
                     isEditing={this.state.isEditing}
                     steps={this.state.recipe.steps}
+                    addEmptyStep={this.addEmptyStep.bind(this)}
                     handleEditEntry={this.handleEditEntry.bind(this)}
                     />
                 <Tags isEditing={this.state.isEditing} tags={this.state.recipe.tags} />

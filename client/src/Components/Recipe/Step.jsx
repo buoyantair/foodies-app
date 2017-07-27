@@ -6,7 +6,12 @@ const StepHolder = styled.div `
 `
 
 class Step extends Component {
-
+    constructor(props){
+        super(props);
+        this.state = {
+            step: this.props.step
+        }
+    }
     render() {
         const StepText = styled[this.props.isEditing
                 ? "textarea"
@@ -16,7 +21,7 @@ class Step extends Component {
             color: #4A4A4A;
             margin-bottom: 1em;
             border: none;
-
+            
             ${this.props.isEditing
             ? `
                 min-height: 300px;
@@ -29,18 +34,18 @@ class Step extends Component {
             height: 400px;
             background-size: cover;
             border: none;
-            background: url('${this.props.step.img}') no-repeat;
+            background: url('${this.state.step.img}') no-repeat;
         `
         return (this.props.isEditing
             ? (
                 <StepHolder className="list-group">
                     <div className="container list-group-item">
-                        <StepText
-                            onChange={(e) => {
-                            this.props.lSteps[this.props.index].desc = e.target.value;
-                        }}
-                            defaultValue={this.props.lSteps[this.props.index].desc}/>
-                        <StepImage img={this.props.step.img} className="align-items-center">
+                        <StepText onChange={(e) => {
+                            let {step} = this.state;
+                            step.desc = e.target.value;
+                            this.setState({step});
+                            }} value={this.state.step.desc}/>
+                        <StepImage img={this.state.step.img} className="align-items-center">
                             <input type="text"/>
                         </StepImage>
                     </div>
@@ -48,8 +53,8 @@ class Step extends Component {
             )
             : (
                 <StepHolder>
-                    <StepText className="container">{this.props.step.desc}</StepText>
-                    <StepImage img={this.props.step.img}/>
+                    <StepText className="container">{this.state.step.desc}</StepText>
+                    <StepImage img={this.state.step.img}/>
                 </StepHolder>
             ));
     }

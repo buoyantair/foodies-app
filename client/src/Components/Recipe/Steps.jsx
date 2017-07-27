@@ -12,34 +12,12 @@ const StepsHolder = styled.div `
     }
 `
 
-let localSteps = null;
-
 class Steps extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            steps: []
-        }
-    }
-
-    componentWillMount() {
-        this.setState({steps: this.props.steps});
-        localSteps = this.state.steps;
-    }
-
-    addEmptyStep() {
-        let EmptyStep = {
-            desc: '',
-            img: ''
-        }
-
-        let {steps} = this.state;
-        steps.push(EmptyStep);
-        this.setState({steps});
-
-        localSteps.push(EmptyStep);
-
-        console.log("added");
+            steps: this.props.steps
+        };
     }
 
     render() {
@@ -47,26 +25,28 @@ class Steps extends Component {
             <StepsHolder>
                 <h1 className="container">Steps</h1>
                 <div>
-                    {this
+                    {
+                        this
                         .state
                         .steps
                         .map((stepInfo, i) => {
-                            return (
-                                <Step
-                                key={i}
-                                isEditing={this.props.isEditing}
-                                step={stepInfo}
-                                lSteps={localSteps}
-                                index={i}/>)
+                            return (<Step key={i} isEditing={this.props.isEditing} step={stepInfo} index={i}/>)
                         })
-}
-                    <div className="container">
-                        <div className="row justify-content-center">
-                            <button className="btn btn-primary btn-lg" onClick={this.addEmptyStep}>
-                                Add Step
-                            </button>
-                        </div>
-                    </div>
+                    }
+                    {
+                        this.props.isEditing
+                        ? (
+                            <div className="container">
+                                <div className="row justify-content-center">
+                                    <button className="btn btn-primary btn-lg" onClick={this.props.addEmptyStep}>
+                                        Add Step
+                                    </button>
+                                </div>
+                            </div>
+                        )
+                        : null
+                    }
+
                 </div>
             </StepsHolder>
         );
