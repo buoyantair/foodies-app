@@ -26711,10 +26711,10 @@ var Recipe = function (_Component) {
         }
     }, {
         key: 'handleEditEntry',
-        value: function handleEditEntry(prop, index) {
+        value: function handleEditEntry(prop, index, newStep) {
             var recipe = this.state.recipe;
 
-            recipe[prop].splice(index, 1);
+            recipe[prop][index] = newStep;
             this.setState({ recipe: recipe });
         }
     }, {
@@ -27048,7 +27048,7 @@ var Steps = function (_Component) {
                     'div',
                     null,
                     this.state.steps.map(function (stepInfo, i) {
-                        return _react2.default.createElement(_Step2.default, { key: i, isEditing: _this2.props.isEditing, step: stepInfo, index: i });
+                        return _react2.default.createElement(_Step2.default, { key: i, isEditing: _this2.props.isEditing, handleEditEntry: _this2.props.handleEditEntry, step: stepInfo, index: i });
                     }),
                     this.props.isEditing ? _react2.default.createElement(
                         'div',
@@ -27127,8 +27127,6 @@ var Step = function (_Component) {
     _createClass(Step, [{
         key: 'render',
         value: function render() {
-            var _this2 = this;
-
             var StepText = _styledComponents2.default[this.props.isEditing ? "textarea" : "div"](_templateObject2, this.props.isEditing ? '\n                min-height: 300px;\n                width: 100%;\n            ' : null);
             var StepImage = _styledComponents2.default.div(_templateObject3, this.state.step.img);
             return this.props.isEditing ? _react2.default.createElement(
@@ -27137,12 +27135,8 @@ var Step = function (_Component) {
                 _react2.default.createElement(
                     'div',
                     { className: 'container list-group-item' },
-                    _react2.default.createElement(StepText, { onChange: function onChange(e) {
-                            var step = _this2.state.step;
-
-                            step.desc = e.target.value;
-                            _this2.setState({ step: step });
-                        }, value: this.state.step.desc }),
+                    _react2.default.createElement(StepText, { defaultValue: this.state.step.desc
+                    }),
                     _react2.default.createElement(
                         StepImage,
                         { img: this.state.step.img, className: 'align-items-center' },

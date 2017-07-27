@@ -30,7 +30,7 @@ class Steps extends Component {
                         .state
                         .steps
                         .map((stepInfo, i) => {
-                            return (<Step key={i} isEditing={this.props.isEditing} step={stepInfo} index={i}/>)
+                            return (<Step key={i} isEditing={this.props.isEditing} handleEditEntry={this.props.handleEditEntry} step={stepInfo} index={i}/>)
                         })
                     }
                     {

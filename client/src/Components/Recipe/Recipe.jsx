@@ -46,9 +46,9 @@ class Recipe extends Component {
         this.setState({recipe});
     }
 
-    handleEditEntry(prop, index){
+    handleEditEntry(prop, index, newStep){
         let {recipe} = this.state;
-        recipe[prop].splice(index, 1);
+        recipe[prop][index] = newStep;
         this.setState({recipe});
     }
 

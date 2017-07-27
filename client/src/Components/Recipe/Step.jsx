@@ -40,11 +40,8 @@ class Step extends Component {
             ? (
                 <StepHolder className="list-group">
                     <div className="container list-group-item">
-                        <StepText onChange={(e) => {
-                            let {step} = this.state;
-                            step.desc = e.target.value;
-                            this.setState({step});
-                            }} value={this.state.step.desc}/>
+                        <StepText defaultValue={this.state.step.desc}
+                        />
                         <StepImage img={this.state.step.img} className="align-items-center">
                             <input type="text"/>
                         </StepImage>
