@@ -26621,7 +26621,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _templateObject = _taggedTemplateLiteral(['\n            width: 100%;\n            min-height: 500px;\n            >.jumbotron{\n                ', '\n                >h1{\n\n                }\n                >p{\n\n                }\n            }\n        '], ['\n            width: 100%;\n            min-height: 500px;\n            >.jumbotron{\n                ', '\n                >h1{\n\n                }\n                >p{\n\n                }\n            }\n        ']);
+var _templateObject = _taggedTemplateLiteral(['\n            width: 100%;\n            min-height: 500px;\n            >.jumbotron{\n                ', '\n                >h1{\n                        \n                }\n                >p{\n\n                }\n            }\n        '], ['\n            width: 100%;\n            min-height: 500px;\n            >.jumbotron{\n                ', '\n                >h1{\n                        \n                }\n                >p{\n\n                }\n            }\n        ']);
 
 var _react = __webpack_require__(8);
 
@@ -27007,6 +27007,8 @@ var _Step2 = _interopRequireDefault(_Step);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -27026,7 +27028,7 @@ var Steps = function (_Component) {
         var _this = _possibleConstructorReturn(this, (Steps.__proto__ || Object.getPrototypeOf(Steps)).call(this, props));
 
         _this.state = {
-            steps: _this.props.steps
+            steps: [].concat(_toConsumableArray(_this.props.steps))
         };
         return _this;
     }
@@ -27127,6 +27129,8 @@ var Step = function (_Component) {
     _createClass(Step, [{
         key: 'render',
         value: function render() {
+            var _this2 = this;
+
             var StepText = _styledComponents2.default[this.props.isEditing ? "textarea" : "div"](_templateObject2, this.props.isEditing ? '\n                min-height: 300px;\n                width: 100%;\n            ' : null);
             var StepImage = _styledComponents2.default.div(_templateObject3, this.state.step.img);
             return this.props.isEditing ? _react2.default.createElement(
@@ -27135,12 +27139,18 @@ var Step = function (_Component) {
                 _react2.default.createElement(
                     'div',
                     { className: 'container list-group-item' },
-                    _react2.default.createElement(StepText, { defaultValue: this.state.step.desc
+                    _react2.default.createElement(StepText, { defaultValue: this.state.step.desc,
+                        onChange: function onChange(e) {
+                            var step = _this2.state.step;
+
+                            step.desc = e.target.value;
+                            _this2.props.handleEditEntry("steps", _this2.props.index, step);
+                        }
                     }),
                     _react2.default.createElement(
                         StepImage,
                         { img: this.state.step.img, className: 'align-items-center' },
-                        _react2.default.createElement('input', { type: 'text' })
+                        _react2.default.createElement('input', { type: 'text', defaultValue: this.state.step.img })
                     )
                 )
             ) : _react2.default.createElement(

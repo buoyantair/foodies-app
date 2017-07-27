@@ -16,7 +16,7 @@ class Steps extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            steps: this.props.steps
+            steps: [...this.props.steps]
         };
     }
 

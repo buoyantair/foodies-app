@@ -58,7 +58,7 @@ mongodb
                 })
         })
 
-        app.get('/recipes/recipe/:recipe_id/view', (req, res, next) => {
+        app.get('/recipes/recipe/:recipe_id/view', (req, res, next) => { 
             console.log(req.params.recipe_id)
             db
                 .collection('recipes')

@@ -63,7 +63,7 @@ class Recipe extends Component {
                     `background: grey;`
                 )}
                 >h1{
-
+                        
                 }
                 >p{
 
