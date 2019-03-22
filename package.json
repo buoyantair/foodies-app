@@ -35,7 +35,7 @@
     "app"
   ],
   "author": "buoyantair <buoyantair@protonmail.com>",
-  "license": "AGPLv3",
+  "license": "AGPL-3.0-only",
   "babel": {
     "presets": [
       "env",
