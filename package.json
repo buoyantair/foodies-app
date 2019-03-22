@@ -1,8 +1,8 @@
 {
   "name": "recipies",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A simple Recipe App :)",
+  "main": "app.js",
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
@@ -29,9 +29,13 @@
     "start": "webpack && webpack-dev-server",
     "watch": "webpack --watch"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "food",
+    "recipes",
+    "app"
+  ],
+  "author": "buoyantair <buoyantair@protonmail.com>",
+  "license": "AGPLv3",
   "babel": {
     "presets": [
       "env",
